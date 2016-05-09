@@ -2,7 +2,7 @@
 last two letters are added together with key
     ^ == new last letter
 
-last letter gets moved to the front
+last letter gets moved to the front 
 
 **repeat until the letters (now encrypted) are in their orginal order**
 
