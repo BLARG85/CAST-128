@@ -770,6 +770,15 @@ public class Encryptor
 	        Kr8, Kr9, Kr10, Kr11, Kr12, Kr13, Kr14, Kr15;
 	  }
 	
+	  
+	  /**
+	   * @param in contains the plain-text 64-bit block.
+	   * @param i start index within input where data is considered.
+	   * @param out will contain the cipher-text block.
+	   * @param j index in out where cipher-text starts.
+	   * @param k the session key object.
+	   * @param bs the desired block size.
+	   */
 	  public void encrypt(byte[] in, int i, byte[] out, int j, Object k, int bs)
 	  {
 	    if (bs != DEFAULT_BLOCK_SIZE)
