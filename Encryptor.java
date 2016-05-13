@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 import static java.lang.System.*;
 
-public class Encryptor
+public class Encryptor implements Cipher_Require
 {
 	/*
 	public static void main( String args[] ) throws IOException
@@ -71,19 +71,8 @@ public class Encryptor
 	
 	
 	private static final int DEFAULT_BLOCK_SIZE = 8; // in bytes
-	  private static final int DEFAULT_KEY_SIZE = 5; // in bytes
-	  /**
-	   * KAT vector (from rfc-2144):
-	   * 40-bit  key         = 01 23 45 67 12
-	   *                     = 01 23 45 67 12 00 00 00 00 00 00 00 00 00 00 00
-	   *         plaintext   = 01 23 45 67 89 AB CD EF
-	   *         ciphertext  = 7A C8 16 D1 6E 9B 30 2E
-	   */
-	  //private static final byte[] KAT_KEY = Util.toBytesFromString("0123456712");
-	  //private static final byte[] KAT_PT = Util.toBytesFromString("0123456789ABCDEF");
-	 // private static final byte[] KAT_CT = Util.toBytesFromString("7AC816D16E9B302E");
-	  /** caches the result of the correctness test, once executed. */
-	  private static Boolean valid;
+	private static final int DEFAULT_KEY_SIZE = 5; // in bytes
+
 	  // CAST5 S-boxes
 	  private static final int[] S1 = {
 	      0x30FB40D4, 0x9FA0FF0B, 0x6BECCD2F, 0x3F258C7A, 0x1E213F2F, 0x9C004DD3,
@@ -441,38 +430,16 @@ public class Encryptor
 	  private static final int _16_ROUNDS = 16;
 	
 	
-		public Encryptor()
-		{
-			
-		}
+		public Encryptor(){}
 	
+		
+		
+		
 	
 	private static final int[] unscramble(int x)
 	{
 		return new int[] { x >>> 24, (x >>> 16) & 0xFF, (x >>> 8) & 0xFF, x & 0xFF };
 	}
-	
-	public Object clone()
-	  {
-		Encryptor result = new Encryptor();
-	    //result.DEFAULT_BLOCK_SIZE = this.DEFAULT_BLOCK_SIZE;
-	    return result;
-	  }
-	
-	public Iterator blockSizes()
-	  {
-	    ArrayList al = new ArrayList();
-	    al.add(Integer.valueOf(DEFAULT_BLOCK_SIZE));
-	    return Collections.unmodifiableList(al).iterator();
-	  }
-	
-	public Iterator keySizes()
-	  {
-	    ArrayList al = new ArrayList();
-	    for (int n = 5; n < 17; n++)
-	      al.add(Integer.valueOf(n));
-	    return Collections.unmodifiableList(al).iterator();
-	  }
 	
 	  public Object makeKey(byte[] uk, int bs) throws InvalidKeyException
 	  {
@@ -778,7 +745,7 @@ public class Encryptor
 	   * @param j index in out where cipher-text starts.
 	   * @param k the session key object.
 	   * @param bs the desired block size.
-	   */
+	   **/
 	  public void encrypt(byte[] in, int i, byte[] out, int j, Object k, int bs)
 	  {
 	    if (bs != DEFAULT_BLOCK_SIZE)
