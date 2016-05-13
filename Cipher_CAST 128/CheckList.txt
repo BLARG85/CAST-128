@@ -1,0 +1,9 @@
+
+
+
+
+	=-	Keep "asking for files" in Runner
+
+	=-	move encrypt and decrypt functions FROM RUNNER to Receiver
+
+	=-	move FileWordSave and print statements to Transmit
