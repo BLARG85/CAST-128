@@ -7,7 +7,7 @@ import java.security.InvalidKeyException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Cipher_Runner{
+public class Receive extends Encryptor{
 	
 	private static Scanner file = null;
 	private static PrintWriter FileWordSave = null;
@@ -16,6 +16,8 @@ public class Cipher_Runner{
 
 	public static void main(String args[]) throws IOException, InvalidKeyException
 	{
+		
+		
 		Encryptor run = new Encryptor();
 		
 		//asks for file destinations

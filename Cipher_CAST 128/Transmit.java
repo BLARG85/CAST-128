@@ -7,7 +7,7 @@ import java.security.InvalidKeyException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Cipher_Runner{
+public class Transmit extends Encryptor{
 	
 	private static Scanner file = null;
 	private static PrintWriter FileWordSave = null;
@@ -16,6 +16,7 @@ public class Cipher_Runner{
 
 	public static void main(String args[]) throws IOException, InvalidKeyException
 	{
+		
 		Encryptor run = new Encryptor();
 		
 		//asks for file destinations
@@ -43,6 +44,7 @@ public class Cipher_Runner{
 			//e.printStackTrace();
 			System.out.println("\t- Incorrect File Destination for Output:\n");
 		}
+		
 		
 		String entireFileText = new Scanner(new File(fileTake)).useDelimiter("\\A").next();
 		System.out.println("\n\n\n **ORIGINAL**\n\" " +entireFileText + " \"\n\n");
