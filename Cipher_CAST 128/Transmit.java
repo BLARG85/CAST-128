@@ -7,17 +7,17 @@ import java.security.InvalidKeyException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Transmit extends Encryptor{
+public class Transmit{
 	
 	private static Scanner file = null;
 	private static PrintWriter FileWordSave = null;
 	private static final String newline = System.getProperty("line.separator");
 	
 
-	public static void main(String args[]) throws IOException, InvalidKeyException
-	{
+
 		
 		Encryptor run = new Encryptor();
+		/*
 		
 		//asks for file destinations
 		Scanner sc = new Scanner(System.in);
@@ -47,13 +47,15 @@ public class Transmit extends Encryptor{
 		
 		
 		String entireFileText = new Scanner(new File(fileTake)).useDelimiter("\\A").next();
+		
+		*/
 		System.out.println("\n\n\n **ORIGINAL**\n\" " +entireFileText + " \"\n\n");
 		FileWordSave.write(entireFileText + newline+newline+newline);
 
 		
 		
 		
-		
+		/*
 		
 		//  Makes the String length equal to a number divisible by 8
 		int WordSave_LENGTH = entireFileText.length();
@@ -96,10 +98,12 @@ public class Transmit extends Encryptor{
 			String ENCRYPTED = new String(OUTPUT, Charset.defaultCharset());
 			for (int d=0; d<8; d++)  ENCRYPTED_INFORMATION[d+h] = OUTPUT[d];
 			NowEncrypted += ENCRYPTED;}
+		
+		*/
 		System.out.println(" **ENCRYPTED**\n\" " + NowEncrypted + " \"\n\n");
 		FileWordSave.write(NowEncrypted + newline+newline+newline);
 		
-		
+		/*
 		
 		//	Decrypts
 		String NowDecrypted = "";
@@ -110,6 +114,7 @@ public class Transmit extends Encryptor{
 			String DECRYPTED = new String(UnEncrypted, Charset.defaultCharset());
 			for (int d=0; d<8; d++)  DECRYPTED_INFORMATION[d+y] = UnEncrypted[d];
 			NowDecrypted += DECRYPTED;}
+		*/
 		System.out.println(" **DECRYPTED**\n\" " + NowDecrypted + " \"\n\n");
 		FileWordSave.write(NowDecrypted + newline+newline+newline);
 		
@@ -118,4 +123,4 @@ public class Transmit extends Encryptor{
 		
 		FileWordSave.close();
 	}
-}
+
