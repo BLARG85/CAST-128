@@ -16,6 +16,7 @@ import java.util.Scanner;
 
 //import Cast5.Cast5Key;
 
+
 import static java.lang.System.*;
 
 public class Encryptor 
@@ -76,6 +77,7 @@ public class Encryptor
 	private static Scanner file = null;
 	private static PrintWriter FileWordSave = null;
 	private static final String newline = System.getProperty("line.separator");
+	Encryptor run = new Encryptor();
 
 	  // CAST5 S-boxes
 	  public static final int[] S1 = {

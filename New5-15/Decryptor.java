@@ -11,6 +11,7 @@ public class Decryptor {
 		private static Scanner file = null;
 		private static PrintWriter FileWordSave = null;
 		private static final String newline = System.getProperty("line.separator");
+		Decryptor run = new Decryptor();	
 		public static final int[] S1 = {
 			      0x30FB40D4, 0x9FA0FF0B, 0x6BECCD2F, 0x3F258C7A, 0x1E213F2F, 0x9C004DD3,
 			      0x6003E540, 0xCF9FC949, 0xBFD4AF27, 0x88BBBDB5, 0xE2034090, 0x98D09675,
