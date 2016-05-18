@@ -365,6 +365,8 @@ public class makeKey{
 		return new int[] { x >>> 24, (x >>> 16) & 0xFF, (x >>> 8) & 0xFF, x & 0xFF };
 	}
 	  
+	public makeKey(){}
+	
 	public Object makeKey(byte[] uk, int bs) throws InvalidKeyException
 	  {
 	    if (bs != DEFAULT_BLOCK_SIZE)

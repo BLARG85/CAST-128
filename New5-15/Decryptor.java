@@ -1,17 +1,24 @@
 import java.io.File;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
+import java.security.InvalidKeyException;
 import java.util.Scanner;
 
-public class Decryptor {
+public class Decryptor extends makeKey {
 	 public static final int _12_ROUNDS = 12;
 	  public static final int _16_ROUNDS = 16;
 		public static final int DEFAULT_BLOCK_SIZE = 8; // in bytes
 		public static final int DEFAULT_KEY_SIZE = 5; // in bytes
-		private static Scanner file = null;
-		private static PrintWriter FileWordSave = null;
-		private static final String newline = System.getProperty("line.separator");
-		Decryptor run = new Decryptor();	
+
+		
+		public Decryptor(){}
+		
+		public Object createKey(byte[] uk, int bs) throws InvalidKeyException
+		{
+			return super.makeKey(uk, bs);
+		}
+		
+		
 		public static final int[] S1 = {
 			      0x30FB40D4, 0x9FA0FF0B, 0x6BECCD2F, 0x3F258C7A, 0x1E213F2F, 0x9C004DD3,
 			      0x6003E540, 0xCF9FC949, 0xBFD4AF27, 0x88BBBDB5, 0xE2034090, 0x98D09675,
@@ -364,7 +371,8 @@ public class Decryptor {
 			      0xE97625A5, 0x0614D1B7, 0x0E25244B, 0x0C768347, 0x589E8D82, 0x0D2059D1,
 			      0xA466BB1E, 0xF8DA0A82, 0x04F19130, 0xBA6E4EC0, 0x99265164, 0x1EE7230D,
 			      0x50B2AD80, 0xEAEE6801, 0x8DB2A283, 0xEA8BF59E };
-		public final int f1(int I, int m, int r)
+		
+			  public final int f1(int I, int m, int r)
 		  {
 		    I = m + I;
 		    I = I << r | I >>> (32 - r);
@@ -436,51 +444,6 @@ public class Decryptor {
 	    out[j++] = (byte)(L >>> 16);
 	    out[j++] = (byte)(L >>> 8);
 	    out[j  ] = (byte) L;
-	    
-	    String entireFileText = new Scanner(new File(fileTake)).useDelimiter("\\A").next();
-	//  Makes the String length equal to a number divisible by 8
-			int WordSave_LENGTH = entireFileText.length();
-			boolean isDivisibleByEight = false;
-			if ((8 - WordSave_LENGTH%8) == 8)  isDivisibleByEight = true;
-			int BITS = WordSave_LENGTH;
-			if (!isDivisibleByEight)  BITS += (8 - WordSave_LENGTH%8);
-			
-			
-			
-
-			
-			//  Converts the string into Bytes and puts them in an array
-			//  long enough to hold all characters, while length is divisible by 8
-			byte[] INPUT = new byte[BITS];
-			byte[] HoldWord = entireFileText.getBytes(Charset.forName("UTF-8"));
-			for (int g=0; g<BITS; g++){
-				if (g<HoldWord.length)  INPUT[g] = HoldWord[g];
-				else  INPUT[g] = 0;}
-
-			
-			
-			
-			
-			//  sets up KEY
-			String STRING_toBeKEY = "12mghftghsogndli";  //KEY need to be between 5 and 16 characters (inclusive)
-			byte[] toBeKEY = STRING_toBeKEY.getBytes(Charset.forName("UTF-8"));
-			Object KEY = run.makeKey(toBeKEY, 8);
-			
-	    //Decrypts
-	    String NowDecrypted = "";
-		byte[] DECRYPTED_INFORMATION = new byte[BITS];
-		for (int y=0; y<BITS; y+=8){
-			byte[] UnEncrypted = new byte[8];
-			run.decrypt(ENCRYPTED_INFORMATION, y, UnEncrypted, 0, KEY, 8);
-			String DECRYPTED = new String(UnEncrypted, Charset.defaultCharset());
-			for (int d=0; d<8; d++)  DECRYPTED_INFORMATION[d+y] = UnEncrypted[d];
-			NowDecrypted += DECRYPTED;}
-		System.out.println(" **DECRYPTED**\n\" " + NowDecrypted + " \"\n\n");
-		FileWordSave.write(NowDecrypted + newline+newline+newline);
-		
-		
-		
-		
-		FileWordSave.close();
+	  
 	  }
 }
